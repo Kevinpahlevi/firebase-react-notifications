@@ -10,7 +10,9 @@ function App() {
   const [show, setShow] = useState(false);
   const [notification, setNotification] = useState({title: '', body: ''});
   const [isTokenFound, setTokenFound] = useState(false);
-  fetchToken(setTokenFound);
+  const [token, setToken] = useState("");
+
+  fetchToken(setTokenFound, setToken);
 
   onMessageListener().then(payload => {
     setNotification({title: payload.notification.title, body: payload.notification.body})
@@ -25,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide animation style={{
+        <Toast onClose={() => setShow(false)} show={show} delay={300000} autohide animation style={{
           position: 'absolute',
           top: 20,
           right: 20,
@@ -45,10 +47,9 @@ function App() {
       <header className="App-header">
         {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
         {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="https://www.gstatic.com/devrel-devsite/prod/vca1a7aa93dfbcd9e1edcd6c1c4e4a9062a9347918300772c1805a64de2865c06/firebase/images/touchicon-180.png" alt="a" />
         <Button onClick={() => onShowNotificationClicked()}>Show Toast</Button>
       </header>
-      
     </div>
   );
 }
